@@ -13,8 +13,9 @@
       <button
           v-for="page in totalPages"
           :key="page"
+          class="button"
+          :class="{ 'button--active': currentPage === page }"
           @click="goToPage(page)"
-          :class="{ active: currentPage === page }"
       >
         {{ page }}
       </button>
@@ -73,6 +74,7 @@ export default {
   },
   methods: {
     goToPage(page) {
+      if (this.currentPage === page) return;
       this.$emit("changePage", page);
     },
   },

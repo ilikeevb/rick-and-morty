@@ -24,6 +24,11 @@ import Pagination from "../components/Pagination.vue";
 export default {
   name: "HomeView",
   components: { CharacterCard, Pagination, SearchBar },
+  data () {
+    return {
+      search: '',
+    };
+  },
   computed: {
     ...mapState("characters", ["characters", "pageInfo"]),
   },
@@ -31,9 +36,10 @@ export default {
     ...mapActions("characters", ["fetchCharacters"]),
     searchCharacters(name) {
       this.fetchCharacters({ name });
+      this.search = name;
     },
     changePage(page) {
-      this.fetchCharacters({ page });
+      this.fetchCharacters({ page, name: this.search });
     },
   },
   created() {
