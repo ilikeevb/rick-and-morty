@@ -3,8 +3,11 @@
     <div class="card__image">
       <img :src="character.image" :alt="character.name">
     </div>
-    <div class="card__content">
-      <router-link :to="{ name: 'Character', params: { characterId: character.id } }">
+    <div>
+      <router-link
+          :to="{ name: 'Character', params: { characterId: character.id } }"
+          class="card__character-name"
+      >
         {{ character.name }}
       </router-link>
      <CharacterStatus :status="character.status" />
@@ -45,5 +48,10 @@ export default {
   img {
     width: 100%;
   }
+}
+
+.card__character-name {
+  display: block;
+  text-align: center;
 }
 </style>
