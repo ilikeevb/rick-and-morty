@@ -18,6 +18,9 @@ const actions = {
         const data = await fetchCharacterById(id);
         commit("SET_CHARACTER", data);
     },
+    clearCharacter({ commit }) {
+        commit("SET_CHARACTER", null);
+    }
 }
 
 const mutations = {

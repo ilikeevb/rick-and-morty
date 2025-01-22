@@ -24,16 +24,19 @@ import CharacterStatus from "../components/CharacterStatus.vue";
 
 export default {
   name: "CharacterView",
-  components: {CharacterStatus},
+  components: { CharacterStatus },
   computed: {
     ...mapState("characters", ["character"]),
   },
   methods: {
-    ...mapActions("characters", ["fetchCharacter"]),
+    ...mapActions("characters", ["fetchCharacter", "clearCharacter"]),
   },
   created() {
     this.fetchCharacter(this.$route.params.characterId);
   },
+  unmounted() {
+    this.clearCharacter();
+  }
 };
 </script>
 
