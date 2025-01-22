@@ -3,6 +3,7 @@
     <button
         @click="goToPage(currentPage - 1)"
         :disabled="!hasPreviousPage"
+        class="button button--prev"
     >
       Назад
     </button>
@@ -24,14 +25,16 @@
       <button
           v-if="currentPage > 1"
           @click="goToPage(currentPage - 1)"
+          class="button"
       >
         {{ currentPage - 1 }}
       </button>
-      <button class="active">
+      <button class="button button--active">
         {{ currentPage }}
       </button>
       <button
           v-if="currentPage < totalPages"
+          class="button"
           @click="goToPage(currentPage + 1)"
       >
         {{ currentPage + 1 }}
@@ -41,6 +44,7 @@
     <button
         @click="goToPage(currentPage + 1)"
         :disabled="!hasNextPage"
+        class="button button--next"
     >
       Вперед
     </button>
@@ -75,24 +79,37 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 .pagination {
-  display: flex;
   gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-button {
-  padding: 5px 10px;
+.button {
+  height: 36px;
+  width: 36px;
   cursor: pointer;
-}
-
-button.active {
+  background: #ffffff;
+  border: none;
   font-weight: bold;
-  background-color: #ddd;
+  border-radius: 4px;
+  &:hover {
+    background: #f4f4f5;
+  }
 }
 
-button:disabled {
+.button--next, .button--prev {
+  width: 80px;
+}
+
+.button--active {
+  border: 1px solid #000000;
+}
+
+.button:disabled {
   cursor: not-allowed;
-  opacity: 0.5;
+  opacity: 0.75;
 }
 </style>
