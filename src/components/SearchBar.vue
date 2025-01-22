@@ -13,3 +13,13 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+input {
+  width: 100%;
+  display: block;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border: 1px solid #000000;
+}
+</style>
