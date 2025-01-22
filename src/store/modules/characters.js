@@ -1,7 +1,8 @@
-import { fetchCharacters } from "../../api/characters.js";
+import { fetchCharacters, fetchCharacterById } from "../../api/characters.js";
 
 const state = () => ({
     characters: [],
+    character: null,
     pageInfo: {},
 })
 
@@ -13,9 +14,16 @@ const actions = {
         commit("SET_CHARACTERS", data);
         commit("SET_PAGE_INFO", { current: page, ...data.info });
     },
+    async fetchCharacter({ commit }, id) {
+        const data = await fetchCharacterById(id);
+        commit("SET_CHARACTER", data);
+    },
 }
 
 const mutations = {
+    SET_CHARACTER(state, payload) {
+        state.character = payload;
+    },
     SET_CHARACTERS(state, payload) {
         state.characters = payload.results;
     },
@@ -24,7 +32,7 @@ const mutations = {
             pages: payload.pages,
             current: payload.current,
         };
-    }
+    },
 }
 
 export default {

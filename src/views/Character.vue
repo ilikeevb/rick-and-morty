@@ -1,19 +1,22 @@
 <template>
   <div>
-    <h1>Character {{ characterId }}</h1>
+    {{ character }}
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   name: "CharacterView",
-  data() {
-    return {
-      characterId: null,
-    }
+  computed: {
+    ...mapState("characters", ["character"]),
+  },
+  methods: {
+    ...mapActions("characters", ["fetchCharacter"]),
   },
   created() {
-    this.characterId = this.$route.params.characterId;
+    this.fetchCharacter(this.$route.params.characterId);
   },
 };
 </script>
