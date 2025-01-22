@@ -9,8 +9,8 @@ const state = () => ({
 const getters = {}
 
 const actions = {
-    async fetchCharacters({ commit }, { page = 1 }) {
-        const data = await fetchCharacters({ page });
+    async fetchCharacters({ commit }, { page = 1, name = '' }) {
+        const data = await fetchCharacters({ page, name });
         commit("SET_CHARACTERS", data);
         commit("SET_PAGE_INFO", { current: page, ...data.info });
     },
